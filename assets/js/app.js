@@ -483,6 +483,8 @@ export const updateWeather = function(lat,lon){
 
                 hourlySection.querySelector("[data-wind]").appendChild(windLi);
             }
+
+
              //5days forcast section
 
         forecastSection.innerHTML = `
@@ -499,12 +501,17 @@ export const updateWeather = function(lat,lon){
             const{
                 main:{temp_max},
                 weather,
-                dt_text
+                dt_text = dateUnix+timezone
 
-            } = forecastList[i]
+            } = forecastList[i];
 
             const [{icon,description}] = weather
-            const date = new Date(dt_text);
+            const date = new Date(dt_text*1000);
+            console.log(date);
+            console.log(date.getUTCDate());   // Should print the day of the month
+            console.log(module.monthNames[date.getUTCMonth()]);  // Should print the month name
+            console.log(module.weekDayNames[date.getUTCDay()]);   // Should print the day of the week
+
 
             const li = document.createElement('li');
             li.classList.add("card-item");
