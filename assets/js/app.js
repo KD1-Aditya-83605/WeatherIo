@@ -501,12 +501,12 @@ export const updateWeather = function(lat,lon){
             const{
                 main:{temp_max},
                 weather,
-                dt_text = dateUnix+timezone
+                dt
 
             } = forecastList[i];
 
             const [{icon,description}] = weather
-            const date = new Date(dt_text*1000);
+            const date = new Date(dt*1000);
             console.log(date);
             console.log(date.getUTCDate());   // Should print the day of the month
             console.log(module.monthNames[date.getUTCMonth()]);  // Should print the month name
@@ -564,4 +564,3 @@ export const error404 =() => errorContent.style.display="flex";
 
 
     
-
